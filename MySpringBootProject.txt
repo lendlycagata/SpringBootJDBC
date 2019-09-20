@@ -1,0 +1,340 @@
+Create Spring Boot Project With Spring Initializer
+
+Step 1. Launch Spring Initializr using https://start.spring.io link
+Step 2. Specify Project Details 
+Look at the above diagram, we have specified following details:
+Generate: Maven Project
+Language: Java
+Java Version: 1.8 (Default)
+Spring Boot: 2.1.4
+Group: net.javaguides.springboot
+Artifact: springboot-helloworld-tutorial
+Name: springboot-helloworld-tutorial
+Description: Demo project for Spring Boot
+Package Name : net.javaguides.springboot.springboothelloworldtutorial
+Packaging: jar (This is the default value)
+Dependencies: Web, JPA, MySQL
+
+
+Once, all the details are entered, click on Generate Project button will generate a spring boot project and downloads it. Next, Unzip the downloaded zip file and import it into your favorite IDE.
+3. Import project in Eclipse
+In Eclipse, Click File -> Import -> Existing Maven Project as shown below.
+
+Navigate or type in the path of the folder where you extracted the zip file to in the next screen.
+
+
+always  2.1.7
+net.javaAbs.springboot
+springboot-Abs-app
+jar
+8
+spring Web starter
+download
+eclipse
+file - import -existing maven project
+
+if there is an red x / rightclick springboot-Abs-app - maven - update project > ok
+
+run >> springboot-Abs-app -- will run <index>
+
+
+https://www.javaguides.net/2019/04/create-spring-boot-project-with-spring-initializer.html
+
+
+
+=========================================================================
+
+
+
+Create Spring Boot Project in Spring Tool Suite [STS]
+
+In the previous article, we have seen how to Create Spring Boot Project With Spring Initializer. In this article, we will see step by step, how to create a Spring Boot project in STS (Spring Tool Suite).
+
+Download the latest Spring tool suite, if you don’t have already from the following link for your respective operating system: https://spring.io/tools/sts/all.
+
+Set up a workspace and click on Launch will open STS explorer.
+Create Spring Boot Project in Spring Tool Suite [STS]
+The below gif image shows step by step process to create a Spring boot project in STS:
+
+
+
+----------------------
+1
+Create Spring Boot Project With Spring Initializer
+
+2 .  Maven Dependencies
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.guides.springboot2</groupId>
+    <artifactId>springboot2-jdbc-crud-example</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>springboot2-jpa-crud-example</name>
+    <description>Demo project for Spring Boot</description>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.5.RELEASE</version>
+        <relativePath />
+        <!-- lookup parent from repository -->
+    </parent>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+
+3. Database Setup
+We will create a table called employees with a few simple columns. We can initialize a schema by creating a schema.sql file in the resources.
+
+create table employees
+(
+   id integer not null,
+   first_name varchar(255) not null, 
+   last_name varchar(255) not null,
+   email_address varchar(255) not null,
+   primary key(id)
+);
+
+4. MySQL Database and Logging Configuration
+
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring.datasource.url = jdbc:mysql://localhost:3306/demo?useSSL=false
+spring.datasource.username = root
+spring.datasource.password = root
+
+
+## Hibernate Properties
+#The SQL dialect makes Hibernate generate better SQL for the chosen database
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto = update
+
+logging.level.org.hibernate.stat=debug
+# Show all queries
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+logging.level.org.hibernate.type=trace
+
+
+5. Creating Employee Bean
+Let's create a simple Employee bean.
+
+
+package net.guides.springboot2.jdbc.model;
+
+public class Employee {
+
+    private long id;
+    private String firstName;
+    private String lastName;
+    private String emailId;
+
+    public Employee() {
+
+    }
+
+    public Employee(long id, String firstName, String lastName, String emailId) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailId = emailId;
+    }
+
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+}
+
+
+6. Create Employee JDBC Repository
+We would want to start with creating a simple repository. To talk to the database we will use a JdbcTemplate.
+
+
+package net.guides.springboot2.jdbc.repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import net.guides.springboot2.jdbc.model.Employee;
+
+@Repository
+public class EmployeeJDBCRepository {
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    class EmployeeRowMapper implements RowMapper < Employee > {
+        @Override
+        public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Employee employee = new Employee();
+            employee.setId(rs.getLong("id"));
+            employee.setFirstName(rs.getString("first_name"));
+            employee.setLastName(rs.getString("last_name"));
+            employee.setEmailId(rs.getString("email_address"));
+            return employee;
+        }
+    }
+
+    public List < Employee > findAll() {
+        return jdbcTemplate.query("select * from employees", new EmployeeRowMapper());
+    }
+
+    public Optional < Employee > findById(long id) {
+        return Optional.of(jdbcTemplate.queryForObject("select * from employees where id=?", new Object[] {
+                id
+            },
+            new BeanPropertyRowMapper < Employee > (Employee.class)));
+    }
+
+    public int deleteById(long id) {
+        return jdbcTemplate.update("delete from employees where id=?", new Object[] {
+            id
+        });
+    }
+
+    public int insert(Employee employee) {
+        return jdbcTemplate.update("insert into employees (id, first_name, last_name, email_address) " + "values(?, ?, ?, ?)",
+            new Object[] {
+                employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getEmailId()
+            });
+    }
+
+    public int update(Employee employee) {
+        return jdbcTemplate.update("update employees " + " set first_name = ?, last_name = ?, email_address = ? " + " where id = ?",
+            new Object[] {
+                employee.getFirstName(), employee.getLastName(), employee.getEmailId(), employee.getId()
+            });
+    }
+}
+
+
+
+7. Run Application
+To keep things simple we will make the Application class implement CommandLineRunner and implement run method to test JDBC methods.
+
+
+
+package net.guides.springboot2.jdbc;
+
+import org.slf4j.Logger;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import net.guides.springboot2.jdbc.model.Employee;
+import net.guides.springboot2.jdbc.repository.EmployeeJDBCRepository;
+
+@SpringBootApplication
+public class Application implements CommandLineRunner {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+ 
+    @Autowired
+    private EmployeeJDBCRepository employeeRepository;
+ 
+    @Override
+    public void run(String... args) throws Exception {
+
+        logger.info("Inserting -> {}", employeeRepository.insert(new Employee(10011L, "Ramesh", "Fadatare", "ramesh@gmail.com")));
+        logger.info("Inserting -> {}", employeeRepository.insert(new Employee(10012L, "John", "Cena", "john@gmail.com")));
+        logger.info("Inserting -> {}", employeeRepository.insert(new Employee(10013L, "tony", "stark", "stark@gmail.com")));
+  
+        logger.info("Employee id 10011 -> {}", employeeRepository.findById(10011L));
+
+        logger.info("Update 10003 -> {}", employeeRepository.update(new Employee(10011L, "ram", "Stark", "ramesh123@gmail.com")));
+
+        employeeRepository.deleteById(10013L);
+
+        logger.info("All users -> {}", employeeRepository.findAll());
+    }
+ 
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

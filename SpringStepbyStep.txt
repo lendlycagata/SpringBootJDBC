@@ -1,0 +1,136 @@
+
+How to use Spring Boot Started JDBC?
+How to connect a Spring Boot project to a database using Spring JDBC?
+How to write a simple repository class with all the CRUD methods?
+How to execute basic queries using Spring JDBC?
+How to create a project using Spring Boot, Spring JDBC, and MySQL?
+How to use a spring-boot-starter-jdbc starter for using JDBC with the HikariCP connection pool.
+
+Tools and Technologies used
+1. Spring boot 2+
+2. Spring JDBC
+3. Maven 3+
+4. JDK 1.8
+5. IDE - Eclipse or STS
+6. MySQL connector and database
+
+
+-------------------------------------
+initializing spring
+
+file import maven/existing maven project browse unzip file 
+
+
+
+Development Steps
+
+1. Create a Spring Boot Application
+Eclipse - file - new   - Maven project - create a simple project  - next
+
+
+com.lendlyCrud
+demoCrud
+
+fill
+
+group id > com.javalendly.springboot.crud
+artifac id > springboot.crud.lendly
+Packaging > jar
+finish
+
+then look for this springboot-springjdbc-mysql-Abs > right click
+	
+build path - configure build path  - Jre system edit - alternate JRE -  jdk 1.8.0 > finish apply 
+
+	then Java Complier  - compiler compliance level  1.8 - apply yes
+	apply and close
+
+
+
+src/main/java - right click new - package  - NAME 
+	com.javaAbs.springboot.jdbc.model - right click new package 
+	com.javaAbs.springboot.jdbc.repository
+
+
+
+------------------------
+
+
+2. Maven dependencies
+	grab the maven dependencies script copy
+	look for pom.xml - paste all
+
+
+--------------------------------
+
+
+3. Database Setup
+
+
+	grab the script in and paste to create table in mysql workbench
+
+under schema Abs_DB_Crud
+he right click on table select Rows - limmit 1000
+
+Select * From Abs_DB_Crud.employees
+
+
+-------------------------------
+
+4. MySQL Database configuration
+
+right click src/main/resources -- new / other - wizard window type file- click file - brings to file window  - File Name ?? application.properties - finish
+	copy the code and paste in application.properties page
+
+
+------------------------
+
+5. Creating Employee Bean
+
+
+create a class in model package  
+com.javaAbs.springboot.jdbc.model - right click - class - file name table name=Employee
+
+grab the script copy and paste
+
+-----------------
+
+
+
+6. Create Employee JDBC Repository
+
+create a repository class in repository package - right click class filename == EmployeeJDBCRepository 
+copy and paste the code
+
+
+
+	
+-------------------------------
+
+
+
+7. Run Application
+
+create application Class
+
+right click to model filename = Application   //trick remove model then it create a new package under src/main /java 
+
+src/main /java 
+com.javaAbs.springboot.jdbc
+
+copy and paste the code
+
+
+this is the index....... 
+
+
+
+
+
+
+
+
+
+
+
+
